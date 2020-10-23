@@ -1,0 +1,135 @@
+From Jahmel to Everyone:  02:05 PM
+^
+From Jacob Whiteman to Everyone:  02:05 PM
+^
+From Joseph Vasconcelos to Everyone:  02:05 PM
+I got domazeguided done so far that's it
+From Me to Everyone:  02:05 PM
+Honestly, same here.
+From Jarad Aker to Everyone:  02:09 PM
+we did too but we are stuck on DFS part
+are you going to post this too?
+From Michael Black to Everyone:  02:10 PM
+mazeGuided
+From Brandon Lodge to Everyone:  02:11 PM
+follow your directions instead of random
+From Daniel Kotlinski to Everyone:  02:11 PM
+walk with given directions
+From Michael Black to Everyone:  02:11 PM
+int[] dir
+for each element in dir
+if((maze[x][y]&dir)==0)
+From Brandon Lodge to Everyone:  02:12 PM
+I have
+From Michael Black to Everyone:  02:18 PM
+- can move method: take a dir as input, returns boolean
+from canmove, build an allmoves
+allmoves: gives list of possible directions
+move: actually makes move by generating new Child puzzle state, and makes move within that
+gives us a list of all valid child states
+From Michael Black to Everyone:  02:34 PM
+class State
+maze state remembers: x,y position of robot
+State constructor
+State(int x, int y)
+isSolved() method
+MWIDTH, MHEIGHT
+x==MWIDTH-1 && y==MHEIGHT-1
+public Boolean canMove(int direction)
+return ((maze[x][y]&direction)==0)
+int[] allmoves()
+allmoves:
+			int count=0;
+			if(canMove(UP)) count++;
+			if(canMove(DOWN)) count++;
+			if(canMove(LEFT)) count++;
+			if(canMove(RIGHT)) count++;
+
+			int[] moves=new int[count];
+
+			count=0;
+			if(canMove(UP)) moves[count++]=UP;
+			if(canMove(DOWN)) moves[count++]=DOWN;
+			if(canMove(LEFT)) moves[count++]=LEFT;
+			if(canMove(RIGHT)) moves[count++]=RIGHT;
+
+	return moves;
+State move(int direction)
+State child = new State(x,y)
+if(direction==UP)
+child.y--;
+		public State[] adjacentStates()
+		{
+			//go through each valid direction, get the state, make an array of these, return it
+			int[] dirs=allMoves();
+			//make an array of states, same size
+			State[] adj=new State[dirs.length];
+			//call move on each valid direction
+			for(int i=0; i<dirs.length; i++)
+				adj[i]=move(dirs[i]);
+			return adj;
+		}
+From Michael Black to Everyone:  02:43 PM
+public static void dfs(int x, int y)
+State start=new State(x,y);
+ArrayList<State> queue=new ArrayList<State>();
+boolean[][] visited=new boolean[MWIDTH][MHEIGHT]
+queue.add(start)
+while(queue.size()>0)
+{
+From Nicholas Almeder to Everyone:  02:44 PM
+queue[0] for bfs?
+From Michael Black to Everyone:  03:03 PM
+current=queue.remove(queue.size()-1)
+visited[current.x][current.y]=true
+get adjacent states
+for each neighbor:
+if(visited[neightbor.x][neighbor.y]==false]
+queue.add(neighbor)
+A, B, G, F, C, D, Exit
+Exit --> D ->>C -->B --> A
+push: e, d, c, ,b, a
+pop: a, b, c, d,e
+first: in Maze, go to your state class
+add on a
+State parent
+int direction
+move method in state:
+child.parent=this;
+child=direction=direction;
+back to dfs, right at end of while loop
+make a Stack
+work backwards: current=current.parent, and push to stack
+pop from the stack, print it out
+doMazeGuided(int[] dir)
+once stack is full, before we pop, make an int[] dir
+int[] dir=new int[flip.size()]
+count=0;
+dir[count++] = flip.pop().direction
+doMazeGuided(dir)
+heuristic maze:
+goal is 29,29
+28,23  is this better than 5,5
+how far is 28.23 from 29,29?
+From Jacob Whiteman to Everyone:  03:04 PM
+oh that's a question to us
+From Yedam Lee to Everyone:  03:04 PM
+root 7
+root 37...
+From Michael Black to Everyone:  03:04 PM
+(29-28) + (29-23)
+From Jacob Whiteman to Everyone:  03:04 PM
+7
+From Michael Black to Everyone:  03:05 PM
+public int manhattan()
+(MWIDTH-x) + (MHEGIHT-y)
+From Jacob Whiteman to Everyone:  03:06 PM
+fingers crossed
+From Michael Black to Everyone:  03:09 PM
+1. doGuided working
+2.  make Maze state:
+using the eight puzzle as a template: State(), isSolved(), canMove(int,int), allmoves(), move(int,int), alladjacent()
+3.  dfs.  print out with println each room you visit, make sure it gets to 29,29
+4.  put in the parent state link, after dfs while loop, push states and then pop them all
+5.  call doGuided( with directions ) - does dfs work?
+6.  put in the manhattan and do astar
